@@ -1,0 +1,17 @@
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.response h1 {
+   font-size: 65px;
+   margin: 10px 5px;
+   font-weight: bold;
+}
+.response h2 {
+    margin: 5px 10px;
+    font-weight: bold;
+}
+.response p {
+   font-size: 17px;
+   font-weight: bold;
+}

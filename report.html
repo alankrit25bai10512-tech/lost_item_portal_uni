@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Report Lost Item</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<style>
+body { 
+    background-image: url("https://media.edexlive.com/edexlive%2F2024-11-09%2Fmd0op1ez%2FVITB-Background.jpeg?w=480&auto=format%2Ccompress&fit=max")
+}
+</style>
+<body>
+<hr>
+<h1 style="text-align: center;"><font color="black" size="40" face="Arial"> 🎓 WELCOME TO UNIVERSITY LOST ITEMS PORTAL</font></h1>
+<p><center><font color="red" size="6" face="Arial"> Helping you reconnect with your Lost belongings</font></p>
+<hr>
+<form class="registration-form" action="/api/report" method="POST">
+<h1><font color="blue"><u>Report a Lost Item</u></font></h1>
+<p>Full name:</p>
+<input type="text" name="fullname" placeholder="Full name" required>
+<p>Item Name:</p>
+<input type="text" name="itemname" placeholder="Item name" required>
+<p>Last Seen Location:</p>
+<input type="text" name="location" placeholder="Last seen location" required>
+<p>Date Lost:</p>
+<input type="date" name="datelost" required>
+<p>Description:</p>
+<textarea name="description" placeholder="Description" rows="3" style="width: 20%; padding: 10px; border-radius: 10px; outline: solid black;"></textarea>
+<p>Your Contact Info:</p>
+<input type="tel" name="contact" placeholder="Phone number" required>
+<br>
+<button type="submit">SUBMIT</button>
+</form>
+</body>
+</html>
