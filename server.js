@@ -13,10 +13,7 @@ const port = process.env.PORT || 3000;
 // Database connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { 
-    rejectUnauthorized: true,
-    ca: process.env.DB_CA_CERT 
-  } : false
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
 // Security middleware
