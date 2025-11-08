@@ -13,7 +13,9 @@ const port = process.env.PORT || 3000;
 // Database connection
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Security middleware
@@ -136,9 +138,8 @@ app.post('/api/login', validateInput, async (req, res) => {
 
 // Initialize database
 async function initDB() {
-  const client = await pool.connect();
   try {
-    await client.query(`
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS lost_items (
         id SERIAL PRIMARY KEY,
         fullname VARCHAR(255) NOT NULL,
@@ -151,7 +152,7 @@ async function initDB() {
       )
     `);
     
-    await client.query(`
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         reg_number VARCHAR(255) UNIQUE NOT NULL,
@@ -162,19 +163,11 @@ async function initDB() {
     
     console.log('Database initialized successfully');
   } catch (error) {
-    console.error('Critical: Database initialization failed:', error.message);
-    process.exit(1);
-  } finally {
-    client.release();
+    console.error('Database initialization error:', error.message);
   }
 }
 
-app.listen(port, async () => {
+app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  try {
-    await initDB();
-  } catch (error) {
-    console.error('Failed to start server:', error.message);
-    process.exit(1);
-  }
+  initDB();
 });
